@@ -12,6 +12,6 @@ public record Plant
             Console.WriteLine(species);
         }
 
-        return species!;
+        return Species!;
     }
 }
