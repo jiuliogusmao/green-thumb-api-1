@@ -7,7 +7,7 @@ public record Plant
     {
         string species = Species ?? "Planta não encontrada.";
         
-        if(species == null)
+        if(species != null)
         {
             Console.WriteLine(species);
         }
