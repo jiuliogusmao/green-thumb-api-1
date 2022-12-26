@@ -1,9 +1,25 @@
 namespace GreenThumb.Endpoints;
 using GreenThumb.Model;
+using GreenThumb.Persistence;
 
-public class PlantEndpoint //:IPlantEndpoint
+public class PlantEndpoint : IEndpoint //,IPlantEndpoint
 {
-
+    private IDatabaseService _service;
+    public PlantEndpoint(PlantDatabaseService service)
+    {
+        _service = service;
+    }
+    public void RegisterRoutes(IEndpointRouteBuilder app)
+    {
+        app.MapPut("add-plant", async (Plant plant) =>
+        {
+            await _service.AddPlant(plant);
+        });
+        app.MapGet("list-plants", async () =>
+        {
+            return await _service.GetPlants();
+        });   
+    }
 }
 public interface IPlantEndpoint
 {

@@ -1,3 +1,5 @@
+using GreenThumb.Model;
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDIServices();
 var app = builder.Build();
@@ -5,7 +7,7 @@ var app = builder.Build();
 app.UseOpenApi();
 app.UseEndpoints();
 
-GreenThumb.Model.Plant plant = new();
+Plant plant = new();
 app.MapGet("/test", () => "Hello World!");
 app.MapGet("/plant-name", plant.Name);
 

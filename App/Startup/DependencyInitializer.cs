@@ -1,11 +1,16 @@
 using Microsoft.OpenApi.Models;
 using GreenThumb.Endpoints;
+using GreenThumb.Persistence;
 public static class DependencyInitializer
 {
     public static IServiceCollection AddDIServices(this IServiceCollection services)
     {
-        //services.AddTransient<IPlantEndpoint, PlantEndpoint>();
+        services.AddSqlite<PlantDbContext>("Data Source=plants.db");
         
+        services.AddTransient<IDatabaseService, PlantDatabaseService>();
+
+        services.AddTransient<IEndpoint,PlantEndpoint>();
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen(c =>
         {
