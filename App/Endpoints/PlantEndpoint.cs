@@ -5,7 +5,7 @@ using GreenThumb.Persistence;
 public class PlantEndpoint : IEndpoint //,IPlantEndpoint
 {
     private IDatabaseService _service;
-    public PlantEndpoint(PlantDatabaseService service)
+    public PlantEndpoint(IDatabaseService service)
     {
         _service = service;
     }

@@ -5,7 +5,10 @@ public static class DependencyInitializer
 {
     public static IServiceCollection AddDIServices(this IServiceCollection services)
     {
-        services.AddSqlite<PlantDbContext>("Data Source=plants.db");
+        //services.AddSqlite<PlantDbContext>("Data Source=plants.db");
+        services.AddDbContext<PlantDbContext>(options =>
+         options.UseSqlite("Data Source=plants.db"), 
+         ServiceLifetime.Transient,ServiceLifetime.Transient);
         
         services.AddTransient<IDatabaseService, PlantDatabaseService>();
 

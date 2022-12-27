@@ -8,6 +8,6 @@ public class PlantDbContext : DbContext
 	{
 		Database.EnsureCreated();
 	}
-	public DbSet<Plant> Plants { get; set; }
+	public DbSet<Plant> Plants { get; set; } = default!;
 }
 
