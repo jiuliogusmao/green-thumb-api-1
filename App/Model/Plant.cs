@@ -16,6 +16,5 @@ public record Plant
 
         return species;
 
-        
     }
 }
