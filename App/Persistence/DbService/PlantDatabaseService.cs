@@ -17,12 +17,19 @@ namespace GreenThumb.Persistence
 			await _context.Plants.AddAsync(plant);
 			await _context.SaveChangesAsync();
 		}
+		public async Task<Plant> GetPlant(int plantId)
+		{
+            return await _context.Plants
+					.Where(p => p.PlantId == plantId)
+					.FirstAsync();
+        }
 	}
 
 	public interface IDatabaseService
 	{
 		Task<List<Plant>> GetPlants();
 		Task AddPlant(Plant plant);
-	}
+        Task<Plant> GetPlant(int plantId); //Task é o que torna essa assinatura de método assíncrona
+    }
 }
 
