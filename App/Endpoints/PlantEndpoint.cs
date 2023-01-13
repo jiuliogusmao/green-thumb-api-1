@@ -18,7 +18,11 @@ public class PlantEndpoint : IEndpoint //,IPlantEndpoint
         app.MapGet("list-plants", async () =>
         {
             return await _service.GetPlants();
-        });   
+        }); 
+        app.MapGet("get-plant", async (int plantId) =>
+        {
+            return await _service.GetPlant(plantId);
+        });  
     }
 }
 public interface IPlantEndpoint
