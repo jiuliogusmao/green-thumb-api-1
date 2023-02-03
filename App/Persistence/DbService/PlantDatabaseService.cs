@@ -21,7 +21,7 @@ namespace GreenThumb.Persistence
 		{
             var plants = await _context.Plants
                     .Where(p => p.PlantId == plantId).ToListAsync();
-            throw new NotImplementedException();
+            return plants.Count > 0 ? plants[0] : new Plant {};
         }
 	}
 
