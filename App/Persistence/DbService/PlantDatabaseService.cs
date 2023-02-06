@@ -19,9 +19,9 @@ namespace GreenThumb.Persistence
 		}
 		public async Task<Plant> GetPlant(int plantId)
 		{
-            return await _context.Plants
-					.Where(p => p.PlantId == plantId)
-					.FirstAsync();
+            var plants = await _context.Plants
+                    .Where(p => p.PlantId == plantId).ToListAsync();
+            return plants.Count > 0 ? plants[0] : new Plant {};
         }
 	}
 
