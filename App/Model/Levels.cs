@@ -1,5 +1,6 @@
 namespace GreenThumb.Model;
-enum Levels
+
+public enum Levels
 {
     Low,
     Medium,
