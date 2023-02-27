@@ -1,7 +1,14 @@
 namespace GreenThumb.Model;
 
-public class User
+public record User
 {
+    public User()
+    {
+        Plants = new List<Plant>();
+    }
+    public int UserId { get; set; }
+    public ICollection<Plant> Plants { get; set; }
+
     public string? Username { get; set; }
     public string? Password { get; set; }
     public string? Email { get; set; }

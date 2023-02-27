@@ -23,13 +23,34 @@ namespace GreenThumb.Persistence
                     .Where(p => p.PlantId == plantId).ToListAsync();
             return plants.Count > 0 ? plants[0] : new Plant {};
         }
+		public async Task DeletePlant(int plantId)
+		{
+            var plant = await _context.Plants.FindAsync(plantId);
+            if(plant != null){
+                _context.Plants.Remove(plant);
+                await _context.SaveChangesAsync();
+            }
+        }
+		public async Task AddSpecies(Species species)
+		{
+            await _context.Species.AddAsync(species);
+            await _context.SaveChangesAsync();
+        }
+		public async Task<List<Species>> GetSpecies()
+		{
+            return await _context.Species
+				.Include(c => c.Cares)
+			.ToListAsync();
+        }
 	}
 
 	public interface IDatabaseService
 	{
 		Task<List<Plant>> GetPlants();
 		Task AddPlant(Plant plant);
-        Task<Plant> GetPlant(int plantId); //Task é o que torna essa assinatura de método assíncrona
+        Task<Plant> GetPlant(int plantId);
+        Task AddSpecies(Species species);
+        Task<List<Species>> GetSpecies();
     }
 }
 

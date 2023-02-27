@@ -2,7 +2,12 @@ namespace GreenThumb.Model;
 
 public record Species
 {
-public string? Name{get; set;}
+    public Species()
+    {
+        Cares = new List<Care>();
+    }
+    public int SpeciesId { get; set; }
+    public string? Name{get; set;}
 
-public List<ICare>? Cares { get; set; }
+    public List<Care> Cares { get; set; }
 }

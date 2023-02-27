@@ -2,7 +2,7 @@ namespace GreenThumb.Endpoints;
 using GreenThumb.Model;
 using GreenThumb.Persistence;
 
-public class PlantEndpoint : IEndpoint //,IPlantEndpoint
+public class PlantEndpoint : IEndpoint
 {
     private IDatabaseService _service;
     public PlantEndpoint(IDatabaseService service)
@@ -22,13 +22,14 @@ public class PlantEndpoint : IEndpoint //,IPlantEndpoint
         app.MapGet("get-plant", async (int plantId) =>
         {
             return await _service.GetPlant(plantId);
-        });  
+        });
+        app.MapPut("add-species", async (Species species) =>
+        {
+            await _service.AddSpecies(species);
+        });
+        app.MapGet("get-species", async () =>
+        {
+            return await _service.GetSpecies();
+        });
     }
-}
-public interface IPlantEndpoint
-{
-    public Task InsertPlant(Plant plant);
-    public Task<Plant> GetPlant(int plantId);
-    public Task<List<Plant>> GetAllPlants();
-    public Task DeletePlant(int plantId);
 }
