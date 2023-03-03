@@ -348,3 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+.DS_Store
+App/.DS_Store
+App/plants.db-shm
+App/plants.db-wal
