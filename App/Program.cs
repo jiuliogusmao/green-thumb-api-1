@@ -9,7 +9,7 @@ app.UseOpenApi();
 app.UseEndpoints();
 
 app.UseCors(options =>
-    options.WithOrigins("http://localhost:4200", "https://gentle-plant-06a96d810.2.azurestaticapps.net")
+    options.WithOrigins("http://localhost:4200", "https://icy-island-09a783610.2.azurestaticapps.net")
     .AllowAnyMethod()
     .AllowAnyHeader()
 );
