@@ -1,4 +1,6 @@
 ﻿using GreenThumb.Model;
+using Microsoft.EntityFrameworkCore;
+
 namespace GreenThumb.Persistence
 {
 	public class PlantDatabaseService : IDatabaseService
@@ -13,8 +15,17 @@ namespace GreenThumb.Persistence
 			return await _context.Plants.ToListAsync();
 		}
 		public async Task AddPlant(Plant plant)
-		{
-			await _context.Plants.AddAsync(plant);
+		{            
+            var existingSpecies = _context.Species.Find(plant.Species?.SpeciesId);
+            
+            var newPlant = new Plant
+            {
+                Nickname = plant.Nickname,
+                Species = existingSpecies ?? null
+            };
+
+            _context.Attach(existingSpecies);
+            await _context.Plants.AddAsync(newPlant);
 			await _context.SaveChangesAsync();
 		}
 		public async Task<Plant> GetPlant(int plantId)
